@@ -15,7 +15,7 @@ public class HttpParseMain {
     public static void main(String[] args) {
         JFrame httpParseFrame = new JFrame("Http-Parse");
 
-        JsoupHttpParse jsoupHttpParse = new JsoupHttpParse();
+        final JsoupHttpParse jsoupHttpParse = new JsoupHttpParse();
 
 
         JPanel inputPannel = new JPanel();
@@ -29,7 +29,7 @@ public class HttpParseMain {
         inputPannel.add(httpRawLabel);
 
         JScrollPane httpRawScro = new JScrollPane();
-        JTextArea httpRawText = new JTextArea(15, 40);
+        final JTextArea httpRawText = new JTextArea(15, 40);
         httpRawText.setBounds(100, 200, 165, 500);
         httpRawScro.setViewportView(httpRawText);
         inputPannel.add(httpRawScro);
@@ -45,7 +45,7 @@ public class HttpParseMain {
         outPanel.add(httpOutLabel);
 
         JScrollPane httpOutScro = new JScrollPane();
-        JTextArea httpOutText = new JTextArea(15, 40);
+        final JTextArea httpOutText = new JTextArea(15, 40);
         httpOutText.setBounds(100, 200, 165, 500);
         httpOutText.setEditable(false);
         httpOutScro.setViewportView(httpOutText);
