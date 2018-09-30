@@ -17,7 +17,7 @@ public class HttpParseMain {
     public static void main(String[] args) {
         JFrame httpParseFrame = new JFrame("Http-Parse");
 
-        httpParseFrame.setIconImage(new ImageIcon("src/0.jpg").getImage());
+        httpParseFrame.setIconImage(new ImageIcon("./0.jpg").getImage());
 
         final JsoupHttpParse jsoupHttpParse = new JsoupHttpParse();
 
