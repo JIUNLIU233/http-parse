@@ -36,12 +36,12 @@ public class JsoupHttpParse implements HttpParseInterface {
         if (httpRequestInfo.getMethod() != null &&
                 !httpRequestInfo.getMethod().equalsIgnoreCase("") &&
                 httpRequestInfo.getMethod().equalsIgnoreCase("post")) {
-            if (httpRequestInfo.getRequestStr() != null ||
+            if (httpRequestInfo.getRequestStr() != null &&
                     !httpRequestInfo.getRequestStr().equalsIgnoreCase("")) {
                 jsoupStr.append(" .requestBody(\"" + httpRequestInfo.getRequestStr() + "\")");
-            } else if (httpRequestInfo.getRequestData() != null ||
+            } else if (httpRequestInfo.getRequestData() != null &&
                     httpRequestInfo.getRequestData().size() > 0) {
-                jsoupStr.append("\t.cookies(new HashMap<String, String>() {{\n");
+                jsoupStr.append("\t.data(new HashMap<String, String>() {{\n");
                 for (Map.Entry<String, String> entry : httpRequestInfo.getRequestData().entrySet()) {
                     jsoupStr.append("\t\tput(\"" + entry.getKey() + "\",\"" + entry.getValue() + "\");\n");
                 }
