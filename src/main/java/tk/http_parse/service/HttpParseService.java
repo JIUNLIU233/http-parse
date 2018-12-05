@@ -3,6 +3,8 @@ package tk.http_parse.service;
 import com.alibaba.fastjson.JSONObject;
 import tk.http_parse.domain.HttpRequestInfo;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,7 +59,11 @@ public class HttpParseService {
 
         String requestStr = "";
         if (!split[split.length - 1].equalsIgnoreCase("") || split[split.length - 2].equalsIgnoreCase("")) {
-            requestStr = split[split.length - 1];
+            try {
+                requestStr = URLDecoder.decode(split[split.length - 1], "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
         }
 
         Map<String, String> data = new HashMap<>();
