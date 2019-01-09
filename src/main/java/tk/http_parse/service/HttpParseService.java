@@ -58,7 +58,7 @@ public class HttpParseService {
         }
 
         String requestStr = "";
-        if (!split[split.length - 1].equalsIgnoreCase("") || split[split.length - 2].equalsIgnoreCase("")) {
+        if (!split[split.length - 1].equalsIgnoreCase("") && split[split.length - 2].equalsIgnoreCase("")) {
             try {
                 requestStr = URLDecoder.decode(split[split.length - 1], "UTF-8");
             } catch (UnsupportedEncodingException e) {
