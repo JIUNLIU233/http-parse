@@ -1,5 +1,6 @@
 package tk.http_parse.service.impl;
 
+import tk.http_parse.HttpParseMain;
 import tk.http_parse.domain.HttpRequestInfo;
 import tk.http_parse.service.HttpParseInterface;
 
@@ -12,7 +13,7 @@ public class JsoupHttpParse implements HttpParseInterface {
 
     @Override
     public String httpParse(HttpRequestInfo httpRequestInfo) {
-        StringBuilder jsoupStr = new StringBuilder("Connection.Response response = Jsoup.connect(\"");
+        StringBuilder jsoupStr = new StringBuilder("Connection.Response response" + HttpParseMain.clickOrder + " = Jsoup.connect(\"");
         jsoupStr.append(httpRequestInfo.getUrl() + "\")\n");
         jsoupStr.append("\t.ignoreContentType(true)\n");
         jsoupStr.append("\t.ignoreHttpErrors(true)\n");
@@ -24,7 +25,6 @@ public class JsoupHttpParse implements HttpParseInterface {
             }
             jsoupStr.append("\t}})\n");
         }
-
         if (httpRequestInfo.getCookies() != null && httpRequestInfo.getCookies().size() > 0) {
             jsoupStr.append("\t.cookies(new HashMap<String, String>() {{\n");
             for (Map.Entry<String, String> entry : httpRequestInfo.getCookies().entrySet()) {
@@ -32,7 +32,6 @@ public class JsoupHttpParse implements HttpParseInterface {
             }
             jsoupStr.append("\t}})\n");
         }
-
         if (httpRequestInfo.getMethod() != null &&
                 !httpRequestInfo.getMethod().equalsIgnoreCase("") &&
                 httpRequestInfo.getMethod().equalsIgnoreCase("post")) {
@@ -49,8 +48,8 @@ public class JsoupHttpParse implements HttpParseInterface {
             }
         }
         jsoupStr.append("\t.execute();\n");
-        jsoupStr.append("String body = response.body();\n" +
-                "Document document = Jsoup.parse(body);");
+        jsoupStr.append("String body" + HttpParseMain.clickOrder + " = response" + HttpParseMain.clickOrder + ".body();\n" +
+                "Document document" + HttpParseMain.clickOrder + " = Jsoup.parse(body" + HttpParseMain.clickOrder + ");");
         return jsoupStr.toString();
     }
 }

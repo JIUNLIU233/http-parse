@@ -6,13 +6,14 @@ import tk.http_parse.service.impl.JsoupHttpParse;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Create by JIUN LIU on 2018/4/28.
  */
 public class HttpParseMain {
+
+
+    public static Integer clickOrder = 0;
 
     public static void main(String[] args) {
         JFrame httpParseFrame = new JFrame("Http-Parse");
@@ -64,13 +65,11 @@ public class HttpParseMain {
          */
         JButton jsoupButton = new JButton("Jsoup");
         jsoupButton.setBounds(10, 80, 80, 25);
-        jsoupButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String httpRawStr = httpRawText.getText();
-                httpOutText.setText(HttpParseService.httpParse(httpRawStr,new JsoupHttpParse()));
+        jsoupButton.addActionListener(e -> {
+            String httpRawStr = httpRawText.getText();
+            clickOrder++;
+            httpOutText.setText(HttpParseService.httpParse(httpRawStr, new JsoupHttpParse()));
 
-            }
         });
         buttonPannel.add(jsoupButton);
 
@@ -79,12 +78,10 @@ public class HttpParseMain {
          */
         JButton httpClientButton = new JButton("HttpClient");
         httpClientButton.setBounds(10, 80, 80, 25);
-        httpClientButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String httpRawStr = httpRawText.getText();
-                httpOutText.setText(HttpParseService.httpParse(httpRawStr,new HttpClientParse()));
-            }
+        httpClientButton.addActionListener(e -> {
+            String httpRawStr = httpRawText.getText();
+            clickOrder++;
+            httpOutText.setText(HttpParseService.httpParse(httpRawStr, new HttpClientParse()));
         });
         buttonPannel.add(httpClientButton);
 
@@ -93,24 +90,17 @@ public class HttpParseMain {
          */
         JButton okHttpButton = new JButton("OKhttp");
         okHttpButton.setBounds(10, 80, 80, 25);
-        okHttpButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                httpOutText.setText("该功能暂不支持");
-            }
-        });
+        okHttpButton.addActionListener(e -> httpOutText.setText("该功能暂不支持"));
         buttonPannel.add(okHttpButton);
 
         /**
          * Unirest 转换
          */
-        JButton unirestButton = new JButton("Unirest");
+        JButton unirestButton = new JButton("序号重置");
         unirestButton.setBounds(10, 80, 80, 25);
-        unirestButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                httpOutText.setText("该功能暂不支持");
-            }
+        unirestButton.addActionListener(e -> {
+            clickOrder = 0;
+            httpOutText.setText("当前序号为：" + clickOrder);
         });
         buttonPannel.add(unirestButton);
 

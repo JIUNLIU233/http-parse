@@ -1,6 +1,7 @@
 package tk.http_parse.service;
 
 import com.alibaba.fastjson.JSONObject;
+import org.apache.commons.text.StringEscapeUtils;
 import tk.http_parse.domain.HttpRequestInfo;
 
 import java.io.UnsupportedEncodingException;
@@ -73,7 +74,7 @@ public class HttpParseService {
                 String requestBody = "";
                 try {
                     JSONObject parseObject = JSONObject.parseObject(requestStr);
-                    httpRequestInfo.setRequestStr(requestStr);
+                    httpRequestInfo.setRequestStr(StringEscapeUtils.escapeJson(requestStr));
                 } catch (Exception e) {// 证明不是json体请求，需要将其进行其他方式的转换
                     String[] strings = requestStr.split("&");
                     mapDeal(strings, data);
