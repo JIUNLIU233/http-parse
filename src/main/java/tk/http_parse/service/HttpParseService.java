@@ -45,7 +45,7 @@ public class HttpParseService {
             if (split[i].split(":").length < 2) break;
             String substring = split[i].substring(0, split[i].indexOf(":"));
             if (!substring.equalsIgnoreCase("Cookie")) {
-                headers.put(substring, split[i].substring(split[i].indexOf(":") + 1).trim());
+                headers.put(StringEscapeUtils.escapeJava(substring), StringEscapeUtils.escapeJava(split[i].substring(split[i].indexOf(":") + 1).trim()));
             } else {
                 cookieStr = split[i];
             }
@@ -95,9 +95,9 @@ public class HttpParseService {
         for (int i = 0; i < strings.length; i++) {// 相关cookie设置
             String[] keyValue = strings[i].split("=", strings[i].indexOf("=") + 1);
             if (keyValue.length < 2) {
-                map.put(keyValue[0], "");
+                map.put(StringEscapeUtils.escapeJava(keyValue[0]), "");
             } else {
-                map.put(keyValue[0], keyValue[1]);
+                map.put(StringEscapeUtils.escapeJava(keyValue[0]), StringEscapeUtils.escapeJava(keyValue[1]));
             }
         }
     }
