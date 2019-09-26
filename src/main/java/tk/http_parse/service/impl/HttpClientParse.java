@@ -30,7 +30,7 @@ public class HttpClientParse implements HttpParseInterface {
                     httpclientStr += "nameValuePairs" + HttpParseMain.clickOrder + ".add(new BasicNameValuePair(\"" + entry.getKey() + "\", \"" + entry.getValue() + "\"));\n";
                 }
                 httpclientStr += "HttpEntity entity" + HttpParseMain.clickOrder + " = EntityBuilder.create().setParameters(nameValuePairs" + HttpParseMain.clickOrder + ").build(); \n" +
-                        "httpRequest" + HttpParseMain.clickOrder + ".setEntity(entity); \n\n";
+                        "httpRequest" + HttpParseMain.clickOrder + ".setEntity(entity" + HttpParseMain.clickOrder + "); \n\n";
             }
         } else {
             httpclientStr += "HttpGet httpRequest" + HttpParseMain.clickOrder + " = new HttpGet(\"" + httpRequestInfo.getUrl() + "\"); \n\n";
